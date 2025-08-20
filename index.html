@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Little Questionnaire 💕</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #d9b3ff, #ffe6f2); /* purple + light pink */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0px 10px 30px rgba(0,0,0,0.15);
+      padding: 35px;
+      max-width: 550px;
+      width: 90%;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+      color: #7a00cc;
+      text-align: center;
+    }
+
+    p.subtitle {
+      font-size: 0.95rem;
+      color: #555;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #444;
+      margin: 18px 0 8px;
+    }
+
+    .options label {
+      display: block;
+      background: #f9f9ff;
+      padding: 12px;
+      border-radius: 12px;
+      margin: 8px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .options input {
+      display: none;
+    }
+
+    .options input:checked + label {
+      background: #c285ff;
+      color: white;
+      border: 1px solid #7a00cc;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      margin-top: 5px;
+      font-size: 0.95rem;
+      transition: border 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border: 1px solid #7a00cc;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    button {
+      background: #7a00cc;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 25px;
+      transition: background 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #660099;
+    }
+
+    .error {
+      color: #d6336c;
+      font-size: 0.85rem;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #666;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hey There ✨</h1>
+    <p class="subtitle">Just some thoughtful questions… answer however you feel comfortable 🌸</p>
+
+    <form id="questionForm">
+      <!-- Q1 -->
+      <h2>💭 How was your day?</h2>
+      <div class="options">
+        <input type="radio" id="day1" name="day" value="Amazing">
+        <label for="day1">Amazing 🌸</label>
+
+        <input type="radio" id="day2" name="day" value="Good">
+        <label for="day2">Good 💕</label>
+
+        <input type="radio" id="day3" name="day" value="Okay">
+        <label for="day3">Okay 😌</label>
+
+        <input type="radio" id="day4" name="day" value="Not great">
+        <label for="day4">Not great 🥺</label>
+      </div>
+      <div class="error" id="dayError">Please choose one option 💌</div>
+
+      <!-- Q2 -->
+      <h2>✨ What would make your day even better?</h2>
+      <input type="text" id="betterDay" placeholder="e.g. A sweet message, ice cream, a walk…">
+      <div class="note">Sometimes small things change everything 🌙</div>
+      <div class="error" id="betterDayError">This can’t be empty 🫶🏻</div>
+
+      <!-- Q3 -->
+      <h2>🎬 Favorite movie/show (last watched or all-time)?</h2>
+      <input type="text" id="favMovie" placeholder="e.g. Interstellar, Friends, Spirited Away…">
+      <div class="note">I’d love to know what inspires your taste 🍿</div>
+      <div class="error" id="favMovieError">Please share at least one 🥹</div>
+
+      <!-- Q4 -->
+      <h2>🍜 What’s your comfort food?</h2>
+      <input type="text" id="comfortFood" placeholder="e.g. Pizza, Maggi, Ice cream…">
+      <div class="note">Food always tells a little story of comfort 💭</div>
+      <div class="error" id="comfortFoodError">Don’t skip this one 💓</div>
+
+      <!-- Q5 -->
+      <h2>🌱 Do you see yourself more as an extrovert or an introvert?</h2>
+      <input type="text" id="personality" placeholder="Extrovert / Introvert / Ambivert">
+      <div class="note">No right or wrong, just you 🌼</div>
+      <div class="error" id="personalityError">Type extrovert, introvert, or ambivert 💌</div>
+
+      <!-- Q6 -->
+      <h2>📺 Do you like animated or live-action movies more?</h2>
+      <input type="text" id="movieType" placeholder="Animated / Live Action / Both">
+      <div class="note">Curious to know which style speaks to you 🎀</div>
+      <div class="error" id="movieTypeError">Please type 'Animated', 'Live Action', or 'Both' 💮</div>
+
+      <!-- Q7 -->
+      <h2>💬 Do you like talking to me?</h2>
+      <div class="options">
+        <input type="radio" id="talk1" name="talk" value="Yes">
+        <label for="talk1">Yes, I enjoy it a lot 🫶🏻</label>
+
+        <input type="radio" id="talk2" name="talk" value="Sometimes">
+        <label for="talk2">Sometimes, depends on the mood 🌙</label>
+
+        <input type="radio" id="talk3" name="talk" value="Not really">
+        <label for="talk3">Not really 😅</label>
+      </div>
+      <div class="error" id="talkError">Please pick one option 💫</div>
+
+      <button type="submit">Submit 💌</button>
+    </form>
+
+    <div class="footer">Made with good vibes, not pressure 🌸</div>
+  </div>
+
+  <script>
+    document.getElementById("questionForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      let valid = true;
+
+      // Reset errors
+      document.querySelectorAll(".error").forEach(err => err.style.display = "none");
+
+      // Validate day
+      if(!document.querySelector("input[name='day']:checked")) {
+        document.getElementById("dayError").style.display = "block";
+        valid = false;
+      }
+
+      // Validate betterDay
+      const betterDay = document.getElementById("betterDay").value.trim();
+      if(betterDay === "") {
+        document.getElementById("betterDayError").style.display = "block";
+        valid = false;
+      }
+
+      // Validate favMovie
+      const favMovie = document.getElementById("favMovie").value.trim();
+      if(favMovie === "") {
+        document.getElementById("favMovieError").style.display = "block";
+        valid = false;
+      }
+
+      // Validate comfortFood
+      const comfortFood = document.getElementById("comfortFood").value.trim();
+      if(comfortFood === "") {
+        document.getElementById("comfortFoodError").style.display = "block";
+        valid = false;
+      }
+
+      // Validate personality
+      const personality = document.getElementById("personality").value.trim().toLowerCase();
+      if(!["extrovert", "introvert", "ambivert"].includes(personality)) {
+        document.getElementById("personalityError").style.display = "block";
+        valid = false;
+      }
+
+      // Validate movieType
+      const movieType = document.getElementById("movieType").value.trim().toLowerCase();
+      if(!["animated", "live action", "both"].includes(movieType)) {
+        document.getElementById("movieTypeError").style.display = "block";
+        valid = false;
+      }
+
+      // Validate talk
+      if(!document.querySelector("input[name='talk']:checked")) {
+        document.getElementById("talkError").style.display = "block";
+        valid = false;
+      }
+
+      if(valid){
+        alert("Thank you for answering 💜 Your thoughts mean a lot ✨");
+      }
+    });
+  </script>
+</body>
+</html>
+
